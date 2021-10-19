@@ -4,8 +4,13 @@
         <title>Hello Page</title>
     </head>
     <body>
-        
-        <p>Replace this with the hello page logic.</p>
-
+		<!-- If there is a name present -->
+		{% if name %}
+		<!-- Then print out string Hello name! -->
+		<p>Hello {{ name }}!</p>
+		<!-- Otherwise, print out Hello World! -->
+		{% else %}
+		<p> Hello World! </p>
+		{% endif %}
     </body>
 </html>

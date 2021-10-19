@@ -16,6 +16,7 @@ def hello_world():
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello_name(name=None):
+    #Takes in name, which by default is none, but is passed to hello.html
     return render_template('hello.html', name=name)
 
 @app.route('/parks')
@@ -24,14 +25,22 @@ def read_users():
     # Read the parks.json file and store it as parks
     with open('parks.json', 'r') as f:
         parks = json.load(f)
-
+    #Passes in the variable parks
     return render_template('parks.html', parks=parks)
 
 
 # Add a route to a return a json response like an API
 #####################################################
 
-
+#Make a dictionary containing the alphabet
+@app.route('/api')
+def api():
+    alphabetDict = {}
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    #Use for loop to map letters to index.
+    for i in range(len(alphabet)):
+        alphabetDict[alphabet[i]] = i
+    return jsonify(alphabetDict)
 
 # If this file is executed, run the app
 if __name__ == "__main__":
